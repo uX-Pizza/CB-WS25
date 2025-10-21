@@ -2,31 +2,31 @@
 Der reguläre Ausdruck beschreibt eine Sprache, die entweden aus einem einzelnen "a" oder einem Wort, welches mit einem "a" beginnt, gefolgt von belibig vielen oder keinen "a" oder "b" und wieder mit einem "a" beendet wird.
 
 # Aufgabe 1.2:
-### Regex:
+## Regex:
 (a-z + A-Z) (a-z + A-Z + 0-9 + _ )* (a-z + A-Z + 0-9)
 
 Der erste Teil stellt sicher, dass als erstes ein großer oder kleiner Buchstabe im Wort auftaucht (der Bezeichner), der zweite stellt den Mittelteil eines Wortes dar, er kann aus allen Groß- und Kleinbuchstaben sowie Zahlen und unterstrichen bestehen. In der Mitte des Wortes können kein oder beliebig viele Zeichen aus dieser Gruppe stehen. Der letzte Abschnitt stellt sicher, dass am Ende kein Unterstrich steht, und dass das Wort mindestens 2 Zeichen lang ist.
 
-#### Beispiele:
-##### VTest_123:
+### Beispiele:
+#### VTest_123:
 V: (a-z + A-Z)
 Test_12: (a-z + A-Z + 0-9 + _ )*
 3: (a-z + A-Z + 0-9)
 
 
-##### b_test_test:
+#### b_test_test:
 b: (a-z + A-Z)
 _test_tes: (a-z + A-Z + 0-9 + _ )*
 t: (a-z + A-Z + 0-9)
 
 
-### DFA:
+## DFA:
 (Automat siehe 02_DFA.png)
 
-#### Beispiele:
+### Beispiele:
 Format: (Zustand 1) -- (Symbol) --> (Zustand 2)
 
-##### VTest_123:
+#### VTest_123:
 A --V--> B
 B --T--> B
 B --e--> B
@@ -37,7 +37,7 @@ C --1--> B
 B --2--> B
 C --3--> B
 
-##### b_test_test:
+#### b_test_test:
 A --b--> B
 B --_ --> C
 C --t--> B
@@ -51,7 +51,7 @@ B --s--> B
 B --t--> B
 
 
-### Grammatik:
+## Grammatik:
 Klammern zur lesbarkeit hinzugefügt.
 
 ({NTA, NTB}, {a-z, A-Z, 0-9}, P, NTA)
@@ -60,11 +60,11 @@ P:
 (NTA) -> a-z(NTB) | A-Z(NTB)
 (NTB) -> a-z(NTB) | A-Z(NTB) | 0-9(NTB) | _(NTB) | a-z | A-Z | 0-9
 
-#### Beispiele:
-##### VTest:
+### Beispiele:
+#### VTest:
 (Siehe 02_VTest.png)
 
-##### b_test_test:
+#### b_test_test:
 (Siehe 02_b_test_test)
 
 
@@ -151,11 +151,11 @@ Ein besserer Ausdruck ist:
 Die Grammatik beschreibt eine Sprache, die mit einem "a" beginnt, gefolgt von beliebig vielen oder keinen "b" oder "c", wenn ein "d" vorkommt, folgt darauf ein c geht die Sequenz aus "b", "c" oder "d" wieder von vorne los, folgt auf "d" kein "c", wird das Wort mit einem "a" oder "b" beendet.
 
 
-### Regex:
+## Regex:
 a(b + c)* d (c (b + c)* d)* (a + b)
 
 
-### Automat:
+## Automat:
 (Automat siehe 06_DFA.png)
 
 In diesem Automaten ist der Zustand TRAP dafür da alle ungültigen Eingaben abzufangen und in einem Zustand zu "fangen" der kein Endszustand ist, um so die Vorgaben eines DFA zu erfüllen und alle falschen Eingaben zu ignorieren.
